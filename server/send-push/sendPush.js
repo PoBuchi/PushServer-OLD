@@ -1,15 +1,3 @@
-apnCert = '';
-apnKey = '';
-
-Certificates.find().observe({
-  added: function (ID, fields) {
-    apnCert = fields.certificate;
-    apnKey = fields.certKey;
-    if (apnKey && apnCert) {
-      establishAPNconnection()
-    }
-  }
-});
 
 // openssl s_client -connect gateway.push.apple.com:2195 -cert cert.pem -key key.pem
 // Create a connection to the service using mostly default parameters.
@@ -25,12 +13,10 @@ Certificates.find().observe({
 //     cacheLength: 100
 // }
 
-
-var tokensDEMO = ["d2860e444551af4b0fef2f4acfb4b82727414d031c62b2f9d4fa905fb2da59a0", "28e1b151217db276b0a9478b455bc69b2a56c2723272b0442749f397f2408b16"];
 establishAPNconnection = function () {
+console.log('%c establishAPNconnection ()   ',  'background: #5D76DB; color: white; padding: 1px 15px 1px 5px;');
 
-
-var service = new APN.connection({
+service = new APN.connection({
   gateway:'gateway.sandbox.push.apple.com',
   certData: apnCert,
   keyData:  apnKey,
@@ -80,38 +66,48 @@ service.on('socketError', function () {
 }
 
 pushNotificationsToAllAPN = function (subject, message, pushType) {
+  console.log('pushNotificationsToAllAPN 1', pushType)
   var query = {
     push: true
   };
   query['pushSettings.' + pushType] = true;
   var users = Meteor.users.find(query, {fields: {tokensIOS: 1}});
+  console.log('pushNotificationsToAllAPN 2 users', users.count())
   users.forEach(function (user) {
-    if (user && (user.tokensIOS.length > 0)) {
+  console.log('pushNotificationsToAllAPN 3 user', users)
+
+    if (user && user.tokensIOS && user.tokensIOS.length) {
         var note = new APN.notification();
         note.setAlertText(subject + ' - ' + message);
         note.badge = 1;
         note.sound = "notification-beep.wav";
+        console.log('pushNotificationsToAllAPN 4 before send', note)
         service.pushNotification(note, user.tokensIOS);
     }
   })
 }
 
-pushNotificationsToAllGCM = function (subject, message, pushType) {
+pushNotificationsToAllGCM = function (subject, text, pushType) {
+  console.log('pushNotificationsToAllGCM 1')
   var query = {
     push: true
   };
   query['pushSettings.' + pushType] = true;
   var users = Meteor.users.find(query, {fields: {tokensAndroid: 1}});
+  console.log('pushNotificationsToAllGCM 2 users', users.count())
   users.forEach(function (user) {
-    if (user && (user.tokensAndroid.length > 0)) {
+    if (user && user.tokensAndroid && user.tokensAndroid.length) {
+      console.log('pushNotificationsToAllGCM 3 user', users)
+      var message = new GCM.Message();
         var sender = new GCM.Sender('AIzaSyA6EQ4Jqk44zjeefxNwtC4L4XMve57Np8I');
         var pushToken = [];
-        message.addData('message', message);
+        message.addData('message', text);
         message.addData('title', subject);
         message.addData('msgcnt','3');
         message.addData('soundname','beep.wav');
         message.timeToLive = 3000;
-        sender.send(message, tokensAndroid, 4, function (result) {
+        console.log('pushNotificationsToAllGCM 4 before send', message)
+        sender.send(message, user.tokensAndroid, 4, function (result) {
           console.log('Step 6.GCM, result - ' + result);
 
         });
@@ -126,7 +122,7 @@ pushNotificationsToSingleAPN = function (userid, subject, message, pushType) {
   query['pushSettings.' + pushType] = true;
 
   var user = Meteor.users.findOne({_id: userid}, {fields: {tokensIOS: 1}})
-  if (user && (user.tokensIOS.length > 0)) {
+  if (user && user.tokensIOS && user.tokensIOS.length) {
      var note = new APN.notification();
      note.setAlertText(subject + ' - ' + message);
      note.badge = 1;
@@ -135,25 +131,43 @@ pushNotificationsToSingleAPN = function (userid, subject, message, pushType) {
   }
 }
 
-pushNotificationsToSingleGCM = function (userid, subject, message, pushType) {
+pushNotificationsToSingleGCM = function (userid, subject, text, pushType) {
   var query = {
     push: true
   };
   query['pushSettings.' + pushType] = true;
 
   var user = Meteor.users.findOne({_id: userid}, {fields: {tokensAndroid: 1}})
-  if (user && (user.tokensAndroid.length > 0)) {
-
+  if (user && user.tokensAndroid && user.tokensAndroid.length) {
+    var message = new GCM.Message();
      var sender = new GCM.Sender('AIzaSyA6EQ4Jqk44zjeefxNwtC4L4XMve57Np8I');
      var pushToken = [];
-     message.addData('message', message);
+     message.addData('message', text);
      message.addData('title', subject);
      message.addData('msgcnt','3');
      message.addData('soundname','beep.wav');
      message.timeToLive = 3000;
-     sender.send(message, tokensAndroid, 4, function (result) {
+     sender.send(message, user.tokensAndroid, 4, function (result) {
        console.log('Step 6.GCM, result - ' + result);
 
      });
   }
 }
+
+
+apnCert = '';
+apnKey = '';
+
+Certificates.find().observe({
+  added: function (fields) {
+    console.log('observeStarted', fields)
+    if (fields && fields.certificate && fields.certKey) {
+
+    apnCert = fields.certificate;
+    apnKey = fields.certKey;
+    if (apnKey && apnCert) {
+      establishAPNconnection()
+    }
+    }
+  }
+});
