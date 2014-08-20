@@ -17,7 +17,7 @@ establishAPNconnection = function () {
 console.log('%c establishAPNconnection ()   ',  'background: #5D76DB; color: white; padding: 1px 15px 1px 5px;');
 
 service = new APN.connection({
-  gateway:'gateway.sandbox.push.apple.com',
+  gateway:'gateway.push.apple.com',
   certData: apnCert,
   keyData:  apnKey,
   passphrase: '`q1w2e3r4t5',
