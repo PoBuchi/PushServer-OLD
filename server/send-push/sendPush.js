@@ -117,11 +117,11 @@ pushNotificationsToAllGCM = function (subject, text, pushType) {
 
 pushNotificationsToSingleAPN = function (userid, subject, message, pushType) {
   var query = {
-    push: true
+    _id: userid
   };
   query['pushSettings.' + pushType] = true;
 
-  var user = Meteor.users.findOne({_id: userid}, {fields: {tokensIOS: 1}})
+  var user = Meteor.users.findOne(query, {fields: {tokensIOS: 1}})
   if (user && user.tokensIOS && user.tokensIOS.length) {
      var note = new APN.notification();
      note.setAlertText(subject + ' - ' + message);
@@ -133,11 +133,11 @@ pushNotificationsToSingleAPN = function (userid, subject, message, pushType) {
 
 pushNotificationsToSingleGCM = function (userid, subject, text, pushType) {
   var query = {
-    push: true
+    _id: userid
   };
   query['pushSettings.' + pushType] = true;
 
-  var user = Meteor.users.findOne({_id: userid}, {fields: {tokensAndroid: 1}})
+  var user = Meteor.users.findOne(query, {fields: {tokensAndroid: 1}})
   if (user && user.tokensAndroid && user.tokensAndroid.length) {
     var message = new GCM.Message();
      var sender = new GCM.Sender('AIzaSyA6EQ4Jqk44zjeefxNwtC4L4XMve57Np8I');
