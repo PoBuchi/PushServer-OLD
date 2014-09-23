@@ -1,0 +1,254 @@
+<head>
+  <title>uclarena</title>
+  <link rel="stylesheet" type="text/css" href="css/styles.css" />
+</head>
+
+<body>
+  {{> agenda}}
+
+</body>
+
+<template name="agenda">
+  <div class="header">
+  <img class= "logo" src="img/logo.png" alt="UCL">
+  </div>
+  <div class="stripe"></div>
+   <div class="agendaHeader">
+     <h3 class="title">Date & Time</h3>
+     <h3 class="title">Session</h3>
+   </div>
+
+  {{> agendaList}}
+
+<!-- MODAL -->
+
+<div class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Speaker Info</h4>
+      </div>
+      <div class="modal-body">
+        {{#with Speaker}}
+          <h3>Speaker Name: <p class="modalInfo">{{fullName}}</p></h3>
+          <h3>Faculty: <p class="modalInfo">{{company}}</p></h3>
+          <h3>Position: <p class="modalInfo"></p></h3>
+          <h3>Short Bio </h3>
+          <p class="modalInfo">{{profile.about}}</p>
+        {{/with}}  
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL END -->
+</template>
+
+<template name="agendaList">
+  {{#each agendaTimes}}
+    {{> agendaListItem}}
+  {{/each}}
+</template>
+
+<template name="XXXagendaList">
+
+<!--Agenda section START  -->
+
+
+
+<div class="agenda">
+  <div class="date">
+    <p>Wednesday 24 September</p>
+    <p>10.00-11.00</p></div>
+  <div class="session">
+    <div class="description">
+    <h3>When perfect isn't good enough</h3>
+      <p>
+      This session will address how to identify students who are struggling with emtional issues and explore how you cna best support them to maximise their studying and make the most of their university experience. 
+      In addition, we aim to explore how to design and deliver teaching that is both supportive and   inclusive. We will use specific examples of students to generate practical tips and ways forward. 
+      For more information and to register, please visit the Single Training Booking System.
+      </p>
+    </div>
+    <div class="speakers">
+    <h3>Speakers</h3>
+    <a href="" data-toggle="modal" data-target="#myModal">Catherine McAteer</a>
+    <a href="" data-toggle="modal" data-target="#myModal">Kate Joseph</a>
+    </div>
+  </div>
+</div>
+
+<!-- Agenda section END -->
+
+
+
+
+<div class="agenda">
+  <div class="date"><p>Wednesday 24 September
+</p><p>10.00-11.00</p></div>
+  <div class="session">
+    <div class="description">
+    <h3>When perfect isn't good enough</h3>
+    <p>Catherine McAteer and Kate Joseph from UCL Student Psychological Services talk about supporting students who have difficulties with low mood, anxiety, perfectionism and adjusting to university. 
+
+    This session will address how to identify students who are struggling with emtional issues and explore how you cna best support them to maximise their studying and make the most of their university experience. 
+
+    In addition, we aim to explore how to design and deliver teaching that is both supportive and   inclusive. We will use specific examples of students to generate practical tips and ways forward. 
+
+    For more information and to register, please visit the Single Training Booking System.
+
+</p>
+    </div>
+    <div class="speakers">
+    <h3>Speakers</h3>
+    <a href="" data-toggle="modal" data-target="#myModal">Catherine McAteer</a>
+    <a href="" data-toggle="modal" data-target="#myModal">Kate Joseph</a>
+    </div>
+  </div>
+</div>
+
+
+<div class="agenda">
+  <div class="date">
+    <p>Monday 2 March</p>
+    <p>16.00-17.00</p>
+  </div>
+  <div class="session">
+    <div class="description">
+    <h3>Introduction and assessment of a new robust peer-assessment in Engineering</h3>
+        <p>Peer assessment has been gradually introduced at university level as it enhances students’ learning and development of critical skills. In this seminar a new peer assessment method, investigated in collaboration with Gwyneth Hughes (Institute of Education), which addresses the weaknesses of the traditional peer assessment and ensures that students engage and see it as a learning tool and an accurate and reliable way of assessing their work will be introduced. It promotes students’ discussion/support and engages them in the assessment of feedback which increases their learning and critical thinking. Following the student’s preferences, an online system is used and anonymity is ensured.
+
+        UKPSF Areas:
+
+        A1 Design and plan learning activities and/or programmes of study
+        A3 Assess and give feedback to learners
+        A4 Develop effective learning environments and approaches to student support and guidance
+        K2 Appropriate methods for teaching and learning in the subject area and at the level of the academic programme
+        K3 How students learn, both generally and within their subject/disciplinary area(s)
+        K4 The use and value of appropriate learning technologies
+        K6 The implications of quality assurance and quality enhancement for academic and professional practice with a particular focus on teaching
+        To register, please visit the Single Training Booking System.
+</p>
+    </div>
+    <div class="speakers">
+    <h3>Speakers</h3>
+    <a href="" data-toggle="modal" data-target="#myModal">Pilar Garcia Souto</a>
+    </div>
+  </div>
+</div>
+
+
+<div class="agenda">
+  <div class="date">
+    <p>Monday 2 March</p>
+    <p>16.00-17.00</p>
+  </div>
+  <div class="session">
+    <div class="description">
+    <h3>Introduction and assessment of a new robust peer-assessment in Engineering</h3>
+        <p>Peer assessment has been gradually introduced at university level as it enhances students’ learning and development of critical skills. In this seminar a new peer assessment method, investigated in collaboration with Gwyneth Hughes (Institute of Education), which addresses the weaknesses of the traditional peer assessment and ensures that students engage and see it as a learning tool and an accurate and reliable way of assessing their work will be introduced. It promotes students’ discussion/support and engages them in the assessment of feedback which increases their learning and critical thinking. Following the student’s preferences, an online system is used and anonymity is ensured.
+
+        UKPSF Areas:
+
+        A1 Design and plan learning activities and/or programmes of study
+        A3 Assess and give feedback to learners
+        A4 Develop effective learning environments and approaches to student support and guidance
+        K2 Appropriate methods for teaching and learning in the subject area and at the level of the academic programme
+        K3 How students learn, both generally and within their subject/disciplinary area(s)
+        K4 The use and value of appropriate learning technologies
+        K6 The implications of quality assurance and quality enhancement for academic and professional practice with a particular focus on teaching
+        To register, please visit the Single Training Booking System.
+</p>
+    </div>
+    <div class="speakers">
+    <h3>Speakers</h3>
+    <a href="" data-toggle="modal" data-target="#myModal">Pilar Garcia Souto</a>
+    </div>
+  </div>
+</div>
+
+
+<div class="agenda">
+  <div class="date">
+    <p>Monday 2 March</p>
+    <p>16.00-17.00</p>
+  </div>
+  <div class="session">
+    <div class="description">
+    <h3>Introduction and assessment of a new robust peer-assessment in Engineering</h3>
+        <p>Peer assessment has been gradually introduced at university level as it enhances students’ learning and development of critical skills. In this seminar a new peer assessment method, investigated in collaboration with Gwyneth Hughes (Institute of Education), which addresses the weaknesses of the traditional peer assessment and ensures that students engage and see it as a learning tool and an accurate and reliable way of assessing their work will be introduced. It promotes students’ discussion/support and engages them in the assessment of feedback which increases their learning and critical thinking. Following the student’s preferences, an online system is used and anonymity is ensured.
+
+        UKPSF Areas:
+
+        A1 Design and plan learning activities and/or programmes of study
+        A3 Assess and give feedback to learners
+        A4 Develop effective learning environments and approaches to student support and guidance
+        K2 Appropriate methods for teaching and learning in the subject area and at the level of the academic programme
+        K3 How students learn, both generally and within their subject/disciplinary area(s)
+        K4 The use and value of appropriate learning technologies
+        K6 The implications of quality assurance and quality enhancement for academic and professional practice with a particular focus on teaching
+        To register, please visit the Single Training Booking System.
+</p>
+    </div>
+    <div class="speakers">
+    <h3>Speakers</h3>
+    <a href="" data-toggle="modal" data-target="#myModal">Pilar Garcia Souto</a>
+    </div>
+  </div>
+</div>
+
+
+<div class="agenda">
+  <div class="date">
+    <p>Monday 2 March</p>
+    <p>16.00-17.00</p>
+  </div>
+  <div class="session">
+    <div class="description">
+    <h3>Introduction and assessment of a new robust peer-assessment in Engineering</h3>
+        <p>Peer assessment has been gradually introduced at university level as it enhances students’ learning and development of critical skills. In this seminar a new peer assessment method, investigated in collaboration with Gwyneth Hughes (Institute of Education), which addresses the weaknesses of the traditional peer assessment and ensures that students engage and see it as a learning tool and an accurate and reliable way of assessing their work will be introduced. It promotes students’ discussion/support and engages them in the assessment of feedback which increases their learning and critical thinking. Following the student’s preferences, an online system is used and anonymity is ensured.
+
+        UKPSF Areas:
+
+        A1 Design and plan learning activities and/or programmes of study
+        A3 Assess and give feedback to learners
+        A4 Develop effective learning environments and approaches to student support and guidance
+        K2 Appropriate methods for teaching and learning in the subject area and at the level of the academic programme
+        K3 How students learn, both generally and within their subject/disciplinary area(s)
+        K4 The use and value of appropriate learning technologies
+        K6 The implications of quality assurance and quality enhancement for academic and professional practice with a particular focus on teaching
+        To register, please visit the Single Training Booking System.
+</p>
+    </div>
+    <div class="speakers">
+    <h3>Speakers</h3>
+    <a href="" data-toggle="modal" data-target="#myModal">Pilar Garcia Souto</a>
+    </div>
+  </div>
+</div>
+
+
+    
+</template>
+
+<template name="agendaListItem">
+  <div class="agenda">
+    <div class="date"><p>{{dateHelper}}
+  </p><p>{{startHelper}}-{{endHelper}}</p></div>
+    <div class="session">
+      {{#with agenda}}
+      <div class="description">
+        {{description}}
+      </div>
+      {{/with}}
+      {{#if speakers}}
+      <div class="speakers">
+      <h3>Speakers</h3>
+      {{#each agendaSpeakers}}
+        <a href="" data-toggle="modal" data-target="#myModal" class="js-setSpeakerId">{{fullName}}</a>
+      {{/each}}
+      </div>
+      {{/if}}
+    </div>
+  </div>
+</template>
