@@ -4,19 +4,64 @@
 </head>
 
 <body>
-  {{> agenda}}
+
+  {{> selectionMenu}}
+  <!-- {{> agenda}} -->
+
 
 </body>
 
-<template name="agenda">
+<template name="selectionMenu">
   <div class="header">
+  <img class= "logo" src="img/logo.png" alt="UCL">
+  </div>
+  <div class="stripe"></div>
+  <div class="selection-menu">
+    <div class="menu-item">
+      <div class="item-title">UCL Arena Exchange Seminars</div>
+      <div class="item-description">
+      <p> These seminars are run by UCL staff. They outline examples of good teaching practice and discuss their work with colleagues. All are welcome.
+        UCL Arena Fellowship applicants can add attendance at these events to their record of professional development activities in Part 2 of their applications.</p>
+      </div>
+    </div>
+    <div class="menu-item">
+      <div class="item-title">Summits and Horizons</div>
+      <div class="item-description">
+       The event, a joint venture between CALT and E-LE, is a series of lunchtime events looking at new e-learning in UCL in which two or three speakers discuss how they've used new technologies in their teaching.
+      </div>
+  </div>
+    <div class="menu-item">
+      <div class="item-title">UCL Arena Essentials</div>
+      <div class="item-description">
+        Topical lunchtime sessions for anyone who teaches and/or supports students' learning at UCL.
+      </div>
+    </div>    
+    <div class="menu-item">
+      <div class="item-title">Object-based research - With UCL Museums and Collections</div>
+      <div class="item-description">       
+        Museum objects can be employed in a variety of ways, to enhance and disseminate subject specific knowledge and to facilitate the acquisition of research, communication, practical and observational skills. Students can research objects, inspiring discussion, group work and lateral thinking – all essential key, transferable, skills. In this session you will have the chance to participate in an object based learning (OBL) session, review existing OBL resources and discuss the development of new OBL resources tailored to your student’s needs.
+      </div>
+    </div>
+    <div class="menu-item">
+      <div class="item-title">Research Supervision</div>
+      <div class="item-description">
+      Custom Content
+      </div>
+    </div>
+ 
+  </div>
+</template>
+
+
+<template name="agenda">
+<!--   <div class="header">
   <img class= "logo" src="img/logo.png" alt="UCL">
   </div>
   <div class="stripe"></div>
    <div class="agendaHeader">
      <h3 class="title">Date & Time</h3>
      <h3 class="title">Session</h3>
-   </div>
+   </div> -->
 
   {{> agendaList}}
 
@@ -33,7 +78,7 @@
         {{#with Speaker}}
           <h3>Speaker Name: <p class="modalInfo">{{fullName}}</p></h3>
           <h3>Faculty: <p class="modalInfo">{{company}}</p></h3>
-          <h3>Position: <p class="modalInfo"></p></h3>
+          <!-- <h3>Position: <p class="modalInfo"></p></h3> -->
           <h3>Short Bio </h3>
           <p class="modalInfo">{{profile.about}}</p>
         {{/with}}  
@@ -46,6 +91,11 @@
 </template>
 
 <template name="agendaList">
+ 
+   <div class="agendaHeader">
+     <h3 class="title">Date & Time</h3>
+     <h3 class="title">Session</h3>
+   </div>
   {{#each agendaTimes}}
     {{> agendaListItem}}
   {{/each}}
@@ -94,6 +144,7 @@
     <div class="session">
       {{#with agenda}}
       <div class="description">
+        <h3>{{sesionname}}</h3>
         {{description}}
       </div>
       {{/with}}
