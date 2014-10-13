@@ -90,6 +90,11 @@ h3 {
 
 
 }
+button {
+  border: 0;
+  outline: 0;
+  text-align: left;
+}
 
 .menu-item{
   padding:1em;
