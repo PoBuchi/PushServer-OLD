@@ -1,8 +1,8 @@
 /* CSS declarations go here */
-@font:"Roboto"
+<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 
 h1,h2,h3,h4,h5,h6,p {
-  font-family:@font;
+  font-family:"Roboto";
 }
 
 body {
@@ -14,12 +14,13 @@ body {
 }
 
 p {
-  font-family:@font;
+  /*font-family:"Roboto";*/
   /*font-size: 0.8em;*/
   color:#393736;
 }
 
 h3 {
+  /*font-family:"Roboto";*/
   font-size: 1em ;
   line-height: 20px;
   color:#393736;
@@ -28,7 +29,7 @@ h3 {
 }
 
 .description {
-  font-family:"Roboto";
+  /*font-family:"Roboto";*/
   font-size: .9em;
 }
 
@@ -37,7 +38,7 @@ h3 {
 }
 
 .date p {
-  font-family:"Roboto";
+  /*font-family:"Roboto";*/
   font-size: .9em;
 }
 
