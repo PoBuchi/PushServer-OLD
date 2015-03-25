@@ -4,9 +4,18 @@
 </head>
 
 <body>
-  {{> agenda}}
-
+  {{! > agenda}}
+  {{> testMyPush}}
 </body>
+
+<template name="testMyPush">
+  <input type="text" id='pushTestInput' placeholder="UserId">
+  <button class="js-sendMePush">Send Me push</button>
+
+  <input type="text" id='pushTestInputLocal' placeholder="Token">
+  <button class="js-sendMePushLocal">Send Me push local</button>
+
+</template>
 
 <template name="agenda">
   <div class="header">
@@ -36,7 +45,7 @@
           <h3>Position: <p class="modalInfo"></p></h3>
           <h3>Short Bio </h3>
           <p class="modalInfo">{{profile.about}}</p>
-        {{/with}}  
+        {{/with}}
       </div>
     </div>
   </div>
@@ -65,8 +74,8 @@
     <div class="description">
     <h3>When perfect isn't good enough</h3>
       <p>
-      This session will address how to identify students who are struggling with emtional issues and explore how you cna best support them to maximise their studying and make the most of their university experience. 
-      In addition, we aim to explore how to design and deliver teaching that is both supportive and   inclusive. We will use specific examples of students to generate practical tips and ways forward. 
+      This session will address how to identify students who are struggling with emtional issues and explore how you cna best support them to maximise their studying and make the most of their university experience.
+      In addition, we aim to explore how to design and deliver teaching that is both supportive and   inclusive. We will use specific examples of students to generate practical tips and ways forward.
       For more information and to register, please visit the Single Training Booking System.
       </p>
     </div>
@@ -84,7 +93,7 @@
 
 
 
-    
+
 </template>
 
 <template name="agendaListItem">

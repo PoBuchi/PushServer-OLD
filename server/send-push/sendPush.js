@@ -154,6 +154,14 @@ pushNotificationsToSingleGCM = function (userid, subject, text, pushType) {
   }
 }
 
+pushNotificationsToSingleAPNtest = function (tokensIOS, subject, message, pushType) {
+   var note = new APN.notification();
+   note.setAlertText(subject + ' - ' + message);
+   note.badge = 1;
+   note.sound = "notification-beep.wav";
+   service.pushNotification(note, tokensIOS);
+}
+
 
 apnCert = '';
 apnKey = '';
