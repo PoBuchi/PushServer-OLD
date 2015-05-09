@@ -5,6 +5,5 @@
 
 standard-app-packages
 accounts-base
-bootstrap
 pauli:node-apn
 pauli:node-gcm
