@@ -1,0 +1,37 @@
+#!/bin/bash
+# Instructions:
+# Open/create oo file
+# s /usr/local/bin/oo
+#
+# (
+# If creating new add  permissions:
+# sudo chown -R $(whoami) /usr/local/bin
+# chmod +x /usr/local/bin/oo
+# )
+#
+# Replace the content with:
+#
+if [ "$1" = "add" ] ; then
+  if [ -d "packages/oo-$2" ]; then
+    echo "$2 already linked"
+  else
+    echo "Linking $2 package..."
+    ln -s ~/Projects/oo-packages/ox2:$2 packages/oo-$2
+  fi
+  meteor add ox2:$2
+elif [ "$1" = "all" ] ; then
+  echo "Adding oo-Platform..."
+  echo "Packages:"
+    for i in detective helpers normalize font-roboto font-roboto-condensed typography icons-spark colors layout buttons parts scroller panels modals forms tabs datetime-picker banner sortable text-display google-maps filesaver loader
+    do
+      if [ -d "packages/oo-$i" ]; then
+        echo "$i already linked"
+      else
+        echo "Linking $i package..."
+        ln -s ~/Projects/oo-packages/ox2:$i packages/oo-$i
+      fi
+    done
+    meteor add ox2:detective ox2:helpers ox2:normalize ox2:font-roboto ox2:font-roboto-condensed ox2:typography ox2:icons-spark ox2:colors ox2:layout ox2:buttons ox2:parts ox2:scroller ox2:panels ox2:modals ox2:forms ox2:tabs ox2:datetime-picker ox2:banner ox2:sortable ox2:text-display ox2:google-maps ox2:filesaver ox2:loader
+elif [ "$1" = "" ] ; then
+  echo "Help: 'oo add packagename' to add a package or 'oo all' to add the whole platform"
+fi
